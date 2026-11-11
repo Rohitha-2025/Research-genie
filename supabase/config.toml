@@ -1,0 +1,17 @@
+project_id = "vyvjlhznffwstaxbpini"
+
+# verify_jwt is off on purpose: the anon key is itself a valid JWT, and the gateway
+# check also breaks CORS preflight. Instead every function calls getUserClient()
+# (supabase/functions/_shared/auth.ts), which validates the caller's token with
+# Supabase Auth and returns 401 for anyone who isn't signed in.
+[functions.chat]
+verify_jwt = false
+
+[functions.process-document]
+verify_jwt = false
+
+[functions.ingest-url]
+verify_jwt = false
+
+[functions.retrieve]
+verify_jwt = false
